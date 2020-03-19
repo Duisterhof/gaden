@@ -943,7 +943,12 @@ void CFilamentSimulator::save_state_to_file()
 			}
 		}
 	}
-	
+	std::string txt_out_filename = boost::str( boost::format("%s/data_%i.txt") % results_location % last_saved_step);
+	std::ofstream ofs(txt_out_filename);
+	for (int i = 0; i < count; i++)
+	{
+		ofs << charArray[i] ;
+	}
 	//now we do have to create a stream, but we pass all the information to it in one step, so we avoid the performance issues
 	boost::iostreams::filtering_streambuf<boost::iostreams::input> inbuf;
 	std::stringstream ist;
